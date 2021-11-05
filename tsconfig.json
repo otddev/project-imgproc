@@ -3,7 +3,7 @@
         "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
-        "declaration": true,
+        "declaration": false,
         "strict": true,
         "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
         "strictNullChecks": true /* Enable strict null checks. */,
@@ -18,18 +18,20 @@
         "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
         "sourceMap": true,
-        "outDir": "./dist/",
-        "rootDir": "./src",
+        "outDir": "dist",
+        "newLine": "lf",
         "types": [
             "node"
         ],
         "lib": [
             "ES6",
-            "DOM"
+            "DOM",
+            "scripthost"
         ]
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*.ts",
+        "./images"
     ],
-    "exclude": ["node_modules", "./dist", "spec"]
+    "exclude": ["node_modules", "./dist", "spec", "logs"]
 }

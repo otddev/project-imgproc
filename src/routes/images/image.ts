@@ -14,10 +14,10 @@ routes.get('/', async (_req: Request, res: Response) => {
       res.status(200).json(f)
     })
     .catch((e) => {
-      res.status(500).json({
-        error: { status: 500, message: e }
+      res.status(e.status).json({
+        error: { status: e.status, message: e.message }
       })
-      logger.error(e)
+      logger.error(e.message)
     })
 })
 
@@ -30,10 +30,10 @@ routes.get('/:file', async (req: Request, res: Response) => {
       res.sendFile(f.toString())
     })
     .catch((e) => {
-      res.status(401).json({
-        error: { status: 401, message: e }
+      res.status(e.status).json({
+        error: { status: e.status, message: e.message }
       })
-      logger.error(e)
+      logger.error(e.message)
     })
 })
 
@@ -46,10 +46,10 @@ routes.get('/:file/meta', async (req: Request, res: Response) => {
       res.status(200).json(f)
     })
     .catch((e) => {
-      res.status(500).json({
-        error: { status: 500, message: e }
+      res.status(e.status).json({
+        error: { status: e.status, message: e.message }
       })
-      logger.error(e)
+      logger.error(e.message)
     })
 })
 

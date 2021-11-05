@@ -21,15 +21,46 @@ export function exists(file: string, query: QueryString.ParsedQs | null) {
   return new Promise<ErrnoException | string>(function (resolve, reject) {
     fs.stat(file, function (err: ErrnoException | null, result) {
       if (err) {
-        return reject(err)
+        if (err.code === 'ENOENT') {
+          return reject({
+            status: 401,
+            message: 'We could not find the file requested.'
+          })
+        }
       } else if (!result.isFile()) {
-        return reject('The file requested is not an image.')
+        return reject({
+          status: 400,
+          message: 'The content request is not a valid file.'
+        })
       }
 
       if (query) {
+        if (query['height']) {
+          if (isNaN(parseInt(query['height'].toString()))) {
+            return reject({
+              status: 401,
+              message:
+                'An invalid height value was used. Please fix and try request again.'
+            })
+          }
+        }
+
+        if (query['width']) {
+          if (isNaN(parseInt(query['width'].toString()))) {
+            return reject({
+              status: 401,
+              message:
+                'An invalid width value was used. Please fix and try request again.'
+            })
+          }
+        }
+
         sharp(file).metadata((err: Error, meta) => {
           if (err) {
-            return reject(err)
+            return reject({
+              status: 500,
+              message: err
+            })
           }
 
           const h: number | undefined = query['height']
@@ -70,7 +101,10 @@ export function exists(file: string, query: QueryString.ParsedQs | null) {
                   return resolve(thumb)
                 })
                 .catch((err) => {
-                  return reject(err)
+                  return reject({
+                    status: 500,
+                    message: err
+                  })
                 })
             })
           }
