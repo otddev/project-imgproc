@@ -4,16 +4,13 @@
   "description": "This is project of a image processing API engine for udacity course submission.",
   "main": "src/index.ts",
   "scripts": {
-    "cli": "ts-node src/cli.ts",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "test": "jasmine-ts --config=spec/support/jasmine.json",
     "lint": "eslint src/ --ext .ts,.tsx",
     "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist build",
-    "ts-node": "ts-node",
-    "start": "nodemon --exec ts-node ./src/index.ts",
-    "dev": "nodemon --config nodemon.json src/index.ts",
-    "dev:debug": "nodemon --config nodemon.json --inspect-brk src/index.ts"
+    "start": "nodemon --exec ts-node src/index.ts",
+    "dist" : "node dist"
   },
   "author": "Antonio G. Garcia",
   "license": "ISC",
