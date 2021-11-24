@@ -6,7 +6,7 @@ mailto:gerardo@onetechdude.com
 
 ## About Project
 
-This is sample projected created for Udacity course in regards fullstack development courses.
+Image API Concept
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -71,6 +71,5 @@ The service utilized its own logging system for troubleshooting.
 
 Antonio Garcia
 Mail: mailto:gerardo@onetechdude.com
-Project Link: https://github.com/otddev/udacity-project-imgproc/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
